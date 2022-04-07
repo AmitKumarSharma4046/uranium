@@ -47,7 +47,7 @@ router.get('/films/:filmId', function(req, res) {
     let movieObj=[{'id':1,'name':'The Shining'},{'id':2,'name':'Incendies'},{'id':3,'name':'Ranf De Basanti'},{'id':4,'name':'Finding Nemo'}]
     let idGiven=req.params.filmId
     if(idGiven>0 && idGiven<movieObj.length){
-        res.send(movieObj[idGiven])
+        res.send(movieObj[idGiven]-1)
     }else{
         res.send('No movie exist with this id')
     }   
