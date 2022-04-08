@@ -53,5 +53,33 @@ router.get('/films/:filmId', function(req, res) {
     }   
 })
 
+// to find missing number in array
+//problem 1
+router.get('/missingNumber', function(req, res) {
+    let numberArray=[1,2,3,4,6,7,8,9]
+    let n=numberArray.length+1
+    let sumOfNumber= [n*(n+1)]/2
+    let sumoOfArray=0
+    for(let i=0;i<numberArray.length;i++){
+        sumoOfArray +=numberArray[i]
+    }
+    let missingNumber=sumOfNumber-sumoOfArray
+    res.send('Missing Number is='+missingNumber)
+})
+
+//problem 2
+router.get('/missingNum', function(req, res) {
+    let numArray=[31,32,33,34,35,37,38,39]
+    let mn=0
+    for(let i=0;i<numArray.length;i++){
+        if(numArray[i]!==i+31){
+            mn=i+31
+            break
+        }
+    }
+    res.send('Missing number is='+mn)
+})
+
+
 module.exports = router;
 // adding this comment for no reason
