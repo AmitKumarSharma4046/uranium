@@ -3,14 +3,23 @@ const AuthorModel= require("../models/authormodel")
 
 const createBook= async function (req, res) {
     let data= req.body
-    let savedData= await BookModel.create(data)
-    res.send({msg: savedData})
+    if(data.author_id){
+        let savedData= await BookModel.create(data)
+        res.send({msg: savedData})
+    }else{
+        res.send({msg: "ERROR: author_id must be present."})
+    }
 }
 
 const createAuthor= async function (req, res) {
     let data= req.body
-    let savedData= await AuthorModel.create(data)
-    res.send({msg: savedData})
+    if(data.author_id){
+        let savedData= await AuthorModel.create(data)
+        res.send({msg: savedData})
+    }else{
+        res.send({msg: "ERROR: author_id must be present."})
+    }
+    
 }
 
 const getChetanBhagat= async function (req, res) {
