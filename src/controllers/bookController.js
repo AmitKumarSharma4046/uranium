@@ -28,6 +28,19 @@ const getAllBooks= async function (req, res) {
     res.send({msg: allBooks})
 }
 
+const putUpdateCover= async function (req, res) {
+    let array = await publisherModel.find({$or:[{name:"Penguin"},{name:"HarperCollins"}]}).select({_id:1})
+    let updateHardCover= await bookModel.updateMany({$or:[{publisher:array[0]},{publisher:array[1]}]},{$set:{isHardCover:true}},{new:true})
+    res.send({msg: updateHardCover})
+}
+
+const putUpdatePrice= async function (req, res) {
+    let arr = await authorModel.find({rating:{$gt:3.5}}).select({_id:1})
+    let upPrice = await bookModel.updateMany({author:arr},{$inc:{"price":10}},{new:true})
+    res.send({msg: upPrice})
+}
 
 module.exports.createBook= createBook
 module.exports.getAllBooks= getAllBooks
+module.exports.putUpdateCover= putUpdateCover
+module.exports.putUpdatePrice= putUpdatePrice
